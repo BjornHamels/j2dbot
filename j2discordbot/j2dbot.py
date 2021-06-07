@@ -5,15 +5,18 @@ import json
 with open('config.json') as config_file:
     config = json.load(config_file)
 
-class MyClient(discord.Client):
+# Derive the client from discord.Client.
+class J2DClient(discord.Client):
+    
+    # Print that we're connected. Yes, this is from the example at: https://discordpy.readthedocs.io/en/stable/intro.html
     async def on_ready(self):
         print('Logged on as {0}!'.format(self.user))
 
+    # Save all received lines to the logfile.
     async def on_message(self, message):
-        print('Message from {0.author}: {0.content}'.format(message))
+        with open(config['message-log-file'], "a") as appendfile:
+            appendfile.write('#{0.channel} | {0.author} : {0.content}\n'.format(message))
 
-
-print("Lets go!")
-
-client = MyClient()
+# Load the client.
+client = J2DClient()
 client.run(config['discord-token'])

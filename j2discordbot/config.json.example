@@ -1,3 +1,4 @@
 {
-  "discord-token" : ""
+  "discord-token" : "",
+  "message-log-file" : "messages.log"
 }
