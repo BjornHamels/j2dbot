@@ -1,4 +1,9 @@
 import discord
+import json
+
+# Load the configuration
+with open('config.json') as config_file:
+    config = json.load(config_file)
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -11,4 +16,4 @@ class MyClient(discord.Client):
 print("Lets go!")
 
 client = MyClient()
-client.run('x')
+client.run(config['discord-token'])
