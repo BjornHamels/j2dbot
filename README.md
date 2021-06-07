@@ -1,6 +1,6 @@
 # j2dbot
 
-A jabber bot that receives xmpp messages, filters then, and then posts them to a channel specified.
+A jabber bot that receives xmpp messages, filters then, and then posts them to a Discord channel specified.
 
 ## Requirements
 
