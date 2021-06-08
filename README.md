@@ -1,11 +1,12 @@
 # j2dbot
 
-A jabber bot that receives xmpp messages, filters then, and then posts them to a Discord channel specified. Oh, it also saves all lines it sees in a log file, just because it can.
+A jabber bot that receives xmpp messages, filters them, and then posts them to a Discord channel via a webhook.
 
 ## Requirements
 
 * discord.py
 * sleekxmpp
+* requests
 
 ## Configuration
 
