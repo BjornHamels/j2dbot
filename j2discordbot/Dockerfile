@@ -6,4 +6,4 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
 
-CMD ["python", "j2dbot.py"]
+CMD ["python3", "-u", "j2dbot.py"]

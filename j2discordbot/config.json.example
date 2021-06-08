@@ -1,4 +1,5 @@
 {
   "discord-token" : "",
-  "message-log-file" : "messages.log"
+  "message-log-file" : "messages.log",
+  "python-loging-level": 20
 }
