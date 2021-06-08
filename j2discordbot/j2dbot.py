@@ -1,7 +1,8 @@
-import discord
+from discord import Webhook, RequestsWebhookAdapter
+from sleekxmpp import ClientXMPP
 import json
 import logging
-from sleekxmpp import ClientXMPP
+import aiohttp
 
 
 # Load the configuration
@@ -13,20 +14,8 @@ logging.basicConfig(level=config["python-loging-level"])
 logging.info("Logger started")
 logging.debug(f"Config: {config}")
 
-
-# Derive the client from discord.Client.
-class DiscordClient(discord.Client):
-    
-    # Print that we"re connected. Yes, this is from the example at: https://discordpy.readthedocs.io/en/stable/intro.html
-    async def on_ready(self):
-        logging.info("Discord: logged on as `{0}`!".format(self.user))
-
-    # Save all received lines to the logfile.
-    async def on_message(self, message):
-        with open(config["message-log-file"], "a") as appendfile:
-            logging.info(f"Discord: received: {message}")
-            appendfile.write("#{0.channel} | {0.author} : {0.content}\n".format(message))
-
+# Discord webhooks are ideal if you want to push content to a channel.
+webhook = Webhook.from_url(url=config["discord-webhook"], adapter=RequestsWebhookAdapter())
 
 # Derive the client from ClientXMPP.
 class ListenBot(ClientXMPP):
@@ -41,22 +30,19 @@ class ListenBot(ClientXMPP):
         logging.info("Jabber: session started.")
         self.send_presence()
         self.get_roster()
+        webhook.send("I'm here.")
 
-    # Log all received lines.
+    # Forward all received lines.
     def message(self, msg):
         if msg['type'] in ('chat', 'normal'):
             logging.info(f"Jabber: received: {msg}")
+            webhook.send(msg["body"])
 
 
 # Entrypoint.
 if __name__ == '__main__':
-    logging.debug("Starting both clienst.")
 
-    # Load the jabber client.
+    # Connect the jabber client, blocking.
     xmpp = ListenBot(config["jabber-jid"], config["jabber-password"])
     xmpp.connect()
-    xmpp.process(block=False)
-
-    # Load the discord client.
-    client = DiscordClient()
-    client.run(config["discord-token"])
+    xmpp.process(block=True)

@@ -1,6 +1,5 @@
 {
-  "discord-token" : "",
-  "message-log-file" : "messages.log",
+  "discord-webhook" : "",
   "python-loging-level": 20,
   "jabber-jid": "jid@example.com",
   "jabber-password": ""
