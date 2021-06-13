@@ -34,9 +34,10 @@ class ListenBot(ClientXMPP):
 
     # Forward all received lines.
     def message(self, msg):
-        if msg['type'] in ('chat', 'normal'):
+        if (msg['type'] == 'chat') and (msg['from'].startswith(config["jabber-forward-from-jid"])):
             logging.info(f"Jabber: received: {msg}")
-            webhook.send(msg["body"])
+            msg = f"{config['discord-pre-msg']}```{msg['body']}```{config['discord-post-msg']}"
+            webhook.send(msg)
 
 
 # Entrypoint.

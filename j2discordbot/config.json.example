@@ -1,6 +1,9 @@
 {
-  "discord-webhook" : "",
   "python-loging-level": 20,
+  "discord-webhook" : "",
+  "discord-pre-msg": "",
+  "discord-post-msg": "",
   "jabber-jid": "jid@example.com",
-  "jabber-password": ""
+  "jabber-password": "",
+  "jabber-forward-from-jid": ""
 }

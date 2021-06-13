@@ -1,6 +1,6 @@
 # j2dbot
 
-A jabber bot that receives xmpp messages, filters them, and then posts them to a Discord channel via a webhook.
+A jabber bot that receives xmpp messages from a configured JID, then posts the received message to the Discord channel via a webhook.
 
 ## Requirements
 
