@@ -2,7 +2,6 @@ from discord import Webhook, RequestsWebhookAdapter
 from sleekxmpp import ClientXMPP
 import json
 import logging
-import aiohttp
 
 
 # Load the configuration
