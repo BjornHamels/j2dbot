@@ -22,5 +22,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+          context: j2discordbot
           tags: docker.pkg.github.com/bjornhamels/j2discordbot:latest
             
