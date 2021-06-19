@@ -23,5 +23,5 @@ jobs:
         with:
           push: true
           context: j2discordbot
-          tags: docker.pkg.github.com/bjornhamels/j2discordbot:latest
+          tags: docker.pkg.github.com/bjornhamels/j2dbot/j2discordbot:latest
             
