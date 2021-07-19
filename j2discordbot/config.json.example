@@ -3,6 +3,7 @@
   "discord-webhook" : "",
   "discord-pre-msg": "",
   "discord-post-msg": "",
+  "discord-greet-connect": "I'm here!",
   "jabber-jid": "jid@example.com",
   "jabber-password": "",
   "jabber-forward-from-jid": ""
